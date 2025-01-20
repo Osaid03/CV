@@ -1,0 +1,107 @@
+.sliderContainer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow-x: hidden; /* Hide the vertical scrollbar */
+}
+
+.sliderWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center; /* Ensure that the center items are shown */
+}
+
+.imageList {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 15px; /* Space between images */
+    scroll-snap-type: x mandatory; /* Ensures smooth snapping */
+}
+
+.imageItem {
+    width: 400px; /* Adjust the width of each certificate */
+    height: 200px; /* Keep height consistent */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Hover transition */
+    scroll-snap-align: center; /* Ensure snapping to the center */
+}
+
+.imageItem:hover {
+    transform: scale(1.05); /* Make it slightly larger on hover */
+}
+
+.sliderScrollbar {
+    position: relative;
+    height: 8px;
+    background: #e0e0e0;
+    margin-top: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.scrollbarThumb {
+    position: absolute;
+    height: 100%;
+    width: 40px;
+    background: #333;
+    border-radius: 4px;
+    cursor: grab;
+}
+
+/* Center the certificates */
+.imageList::-webkit-scrollbar {
+    display: none; /* Hide default scrollbar */
+}
+
+/* Slider button styles */
+.slideButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.slideButton:first-of-type {
+    left: 0;
+}
+
+.slideButton:last-of-type {
+    right: 0;
+}
+
+.hoverText {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+}
+
+.imageItemContainer {
+    position: relative;
+    cursor: pointer; /* Makes it clear the image is clickable */
+}
+
+.imageItemContainer:hover .hoverText {
+    opacity: 1; /* Show text on hover */
+    transform: translateX(-50%) translateY(-5px); /* Slight pop-up effect */
+}

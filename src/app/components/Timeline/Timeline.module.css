@@ -1,0 +1,146 @@
+/* Main Timeline Container */
+.timelineContainer {
+    position: relative;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px 0;
+}
+
+.heading {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Timeline Vertical Line */
+.timelineList {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    z-index: 0; /* Neutral stacking order for parent */
+
+}
+
+.timelineList::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-color: #ddd;
+  transform: translateX(-50%);
+  z-index: 1; /* Ensure the line is behind everything */
+}
+
+
+/* Timeline Item Styling */
+.timelineItem {
+  position: relative;
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: left;
+  opacity: 0; /* Initially hidden */
+  transform: translateX(100%); /* Initially positioned off-screen */
+  z-index: 110; /* Neutral stacking context */
+  transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+/* When the item is visible (via IntersectionObserver) */
+.timelineItem.visible {
+  opacity: 1;
+  transform: translateY(0); /* Move to the normal position */
+}
+
+/* Stagger the animation for alternating cards */
+.timelineItem.right.visible,
+.timelineItem.left.visible {
+  transform: translateY(0%); /* Slide in from the left */
+}
+
+.timelineItem.left {
+    left: 0;
+    text-align: left;
+}
+
+.timelineItem.right {
+    left: 50%;
+    text-align: left;
+}
+
+/* Circle Styling */
+.circle {
+  position: absolute;
+  top: 50%; /* Vertically center it */
+  width: 20px;
+  height: 20px;
+  background-color: white; /* Transparent inside */
+  border: 4px solid var(--accent-color, #41516C); /* Colored border */
+  border-radius: 50%; /* Make it a circle */
+  z-index: 10; /* Ensure it is above the line */
+  left: 97%; /* Horizontally center */
+  transform: translate(0%, -50%); /* Perfect centering */
+}
+
+
+/* Adjust circle placement for left and right items */
+.timelineItem.left .circle {
+  right: -10px; /* Circle positioned on the left side */
+}
+
+.timelineItem.right .circle {
+  left: -10px; /* Circle positioned on the right side */
+}
+/* Content Box */
+.content {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.date {
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--accent-color, #41516C);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.descr {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Arrow Effect */
+.content::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    transform: translateY(-50%);
+}
+
+.timelineItem.left .content::before {
+    right: -20px;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent #fff;
+}
+
+.timelineItem.right .content::before {
+    left: -20px;
+    border-width: 10px 20px 10px 0;
+    border-color: transparent #fff transparent transparent;
+}
