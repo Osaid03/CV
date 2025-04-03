@@ -19,7 +19,8 @@ export const RESUME_DATA = {
   summary: (
     <>
       A Cybersecurity student passionate about building secure systems and full-stack applications.
-      Experienced in backend development, and learning frontend technologies like React and Next.js to create modern, responsive web applications.
+      Experienced in backend development, and currently learning frontend technologies like Flutter and React and Next.js to create modern, responsive web applications.
+      Possess a strong foundation in cybersecurity principles, including Linux system administration, as well as offensive (attack) and defensive (protective) security techniques.
     </>
   ),
   avatarUrl: "https://gitlab.com/uploads/-/system/user/avatar/22931844/avatar.png?width=192",
