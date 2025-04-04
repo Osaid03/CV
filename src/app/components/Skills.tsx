@@ -3,16 +3,17 @@ import { Section } from "@/components/ui/section";
 import { RESUME_DATA } from "@/data/resume-data";
 import { cn } from "@/lib/utils";
 
-type Skills = readonly string[];
+type Skill = {
+  name: string;
+  logo: string;
+};
 
 interface SkillsListProps {
   skills: Skills;
   className?: string;
 }
+type Skills = readonly Skill[]; // Update this to match the structure
 
-/**
- * Renders a list of skills as badges
- */
 function SkillsList({ skills, className }: SkillsListProps) {
   return (
     <ul
@@ -20,15 +21,16 @@ function SkillsList({ skills, className }: SkillsListProps) {
       aria-label="List of skills"
     >
       {skills.map((skill) => (
-        <li key={skill}>
-          <Badge className="print:text-[10px]" aria-label={`Skill: ${skill}`}>
-            {skill}
+        <li key={skill.name}> {/* Use skill.name as the key */}
+          <Badge className="print:text-[10px]" aria-label={`Skill: ${skill.name}`}>
+            {skill.name} {/* Pass only the name to Badge */}
           </Badge>
         </li>
       ))}
     </ul>
   );
 }
+
 
 interface SkillsProps {
   skills: Skills;

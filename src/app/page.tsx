@@ -3,11 +3,10 @@ import { Metadata } from "next";
 import { RESUME_DATA } from "@/data/resume-data";
 import { WorkExperience } from "./components/WorkExperience";
 import { Projects } from "./components/Projects";
-import { Education } from "./components/Education";
 import { Summary } from "./components/Summary";
 import { Skills } from "./components/Skills";
 import { Header } from "./components/Header";
-import Slider from "./components/Slider/Slider"; // Import the new Slider component
+import Slider from "./components/Slider/Slider"; 
 import Timeline from "./components/Timeline/Timeline";
 import DarkModeToggle from './components/DarkMode/DarkModeToggle';
 
@@ -77,7 +76,7 @@ export default function ResumePage() {
 
           <WorkExperience work={RESUME_DATA.work} />
 
-          <Timeline data={RESUME_DATA.timeline} />;
+          <Timeline />
 
           <Skills skills={RESUME_DATA.skills} />
 

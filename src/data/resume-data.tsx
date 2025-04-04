@@ -5,12 +5,11 @@ import {
   MonitoLogo,
   NSNLogo,
   ParabolLogo,
-} from "@/images/logos"; // Import logos of companies and projects
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"; // Import icons for social links
+} from "@/images/logos"; 
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"; 
 import Timeline from "@/app/components/Timeline/Timeline";
 import { title } from "process";
 
-// The constant RESUME_DATA object that holds the resume information
 export const RESUME_DATA = {
   name: "Osaid Qattan",
   initials: "OQ",
@@ -103,7 +102,7 @@ export const RESUME_DATA = {
       logo: MonitoLogo,
       link: {
         label: "Project Details",
-        href: "https://github.com/Osaid03", // Update with the actual link if available
+        href: "https://github.com/Osaid03", 
       },
     },
     {
@@ -114,7 +113,7 @@ export const RESUME_DATA = {
       logo: ConsultlyLogo,
       link: {
         label: "WagenHub Repository",
-        href: "https://github.com/Osaid03", // Update with the actual link if available
+        href: "https://github.com/Osaid03", 
       },
     },
     {
@@ -125,21 +124,21 @@ export const RESUME_DATA = {
       logo: ParabolLogo,
       link: {
         label: "BOTBase Repository",
-        href: "https://github.com/Osaid03", // Update with the actual link if available
+        href: "https://github.com/Osaid03", 
       },
     },
   ],
   slider: [
     {
-      id: "certificate1",       // Unique identifier for the certificate
-      imageUrl: "images/certificate1.png",  // Path to the image
-      redirectUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7228788689617747968/", // URL to open
+      id: "certificate1",       
+      imageUrl: "images/certificate1.png",  
+      redirectUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7228788689617747968/", 
       title: "Certificate in CyberSeucrity"
     },
     {
-      id: "certificate2",       // Another certificate
-      imageUrl: "images/certificate2.png",  // Path to the second certificate
-      redirectUrl: "https://certificate.givemycertificate.com/c/683243ad-2685-4f9a-b8cb-bd9a7b13b5b5", // URL to open
+      id: "certificate2",       
+      imageUrl: "images/certificate2.png",  
+      redirectUrl: "https://certificate.givemycertificate.com/c/683243ad-2685-4f9a-b8cb-bd9a7b13b5b5",
       title: "Certificate in Full Stack Web Development"
     },
 
