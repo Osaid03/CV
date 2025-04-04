@@ -9,7 +9,7 @@ import { Skills } from "./components/Skills";
 import { Header } from "./components/Header";
 import Slider from "./components/Slider/Slider"; // Import the new Slider component
 import Timeline from "./components/Timeline/Timeline";
-import DarkModeToggle from './components/DarkMode/DarkModeToggle';  // Import the DarkModeToggle component
+import DarkModeToggle from './components/DarkMode/DarkModeToggle';
 
 
 export const metadata: Metadata = {
@@ -84,8 +84,6 @@ export default function ResumePage() {
           <Projects projects={RESUME_DATA.projects} />
 
           <Slider sliders={RESUME_DATA.slider} />
-
-          <DarkModeToggle darkmode={RESUME_DATA.darkmodetoggle} />
 
         </div>
       </section>

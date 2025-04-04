@@ -92,6 +92,7 @@ export const RESUME_DATA = {
     { name: "Tailwind CSS", logo: "https://www.svgrepo.com/show/374118/tailwind.svg" },
     { name: "TensorFlow", logo: "https://www.svgrepo.com/show/354440/tensorflow.svg" },
     { name: "Typescript", logo: "https://www.svgrepo.com/show/439022/typescript.svg" },
+    { name: "Flutter", logo: "https://www.svgrepo.com/show/373604/flutter.svg" },
   ],
   projects: [
     {
