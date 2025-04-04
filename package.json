@@ -2,10 +2,11 @@
   "name": "web-cv",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Osaid03.github.io/CV",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "deploy": "gh-pages -d out",  
     "lint": "next lint"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "gh-pages": "^6.3.0",
     "postcss": "^8",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
