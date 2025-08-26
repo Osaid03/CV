@@ -2,6 +2,7 @@ import {
   ClevertechLogo,
   ConsultlyLogo,
   IbtikarLogo,
+  ISC2Logo,
   JojoMobileLogo,
   MonitoLogo,
   NSNLogo,
@@ -17,7 +18,7 @@ export const RESUME_DATA = {
   initials: "OQ",
   location: "Abu Dhabi, UAE, GST",
   locationLink: "https://www.google.com/maps/place/Abu+Dhabi",
-  about: "Cybersecurity student and full-stack web developer with goals to secure a job in the field.",
+  about: "First Class Cybersecurity Graduate & Full-Stack Developer  Ethical Hacking • Pentesting • AppSec • Secure Flutter & Spring Boot",
   summary: (
     <>
       A Cybersecurity graduate with First Class Honours, passionate about building secure systems and full-stack applications. Experienced in backend development and skilled with frontend technologies such as Flutter, React, and Next.js for creating modern, responsive web applications. I have a solid foundation in cybersecurity principles, including Linux system administration, along with both offensive (ethical hacking, penetration testing) and defensive (system hardening, incident response) techniques.
@@ -49,7 +50,8 @@ export const RESUME_DATA = {
       issuer: "ISC2",
       date: "2024 - 2027",
       description: "Certification in Cybersecurity (CC) from ISC2, demonstrating foundational knowledge in cybersecurity principles and practices.",
-      link: "https://www.credly.com/badges/cc-example-link",
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7228788689617747968/",
+      logo: ISC2Logo,
     },
   ],
 

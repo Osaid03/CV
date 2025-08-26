@@ -17,6 +17,7 @@ import YearProgressLogo from "./yearprogress.svg";
 import Minimal from "./minimal.svg";
 import IbtikarLogo from "./IbtikarLogo.png";
 import TCRLogo from "./TCR.png";
+import ISC2Logo from "./ISC2.png";
 
 
 export {
@@ -39,4 +40,5 @@ export {
   Minimal,
   IbtikarLogo,
   TCRLogo,
+  ISC2Logo,
 };

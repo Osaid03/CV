@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { RESUME_DATA } from "@/data/resume-data";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type Certification = (typeof RESUME_DATA)["certification"][number];
 type CertificationBadges = readonly string[];
@@ -72,13 +73,22 @@ interface CertificationItemProps {
  * Individual certification card component
  */
 function CertificationItem({ certification }: CertificationItemProps) {
-    const { title, issuer, date, description, link, badges } = certification;
+    const { title, issuer, date, description, link, badges, logo } = certification;
 
     return (
         <Card className="py-1 print:py-0">
             <CardHeader className="print:space-y-1">
                 <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none print:text-sm">
+                        {logo && (
+                            <Image
+                                src={logo}
+                                alt={`${issuer || title} logo`}
+                                width={24}
+                                height={24}
+                                className="rounded-sm object-contain print:w-4 print:h-4"
+                            />
+                        )}
                         <CertificationLink title={title} link={link} />
                         <BadgeList
                             className="hidden gap-x-1 sm:inline-flex"
