@@ -1,12 +1,14 @@
 import {
   ClevertechLogo,
   ConsultlyLogo,
+  IbtikarLogo,
   JojoMobileLogo,
   MonitoLogo,
   NSNLogo,
   ParabolLogo,
-} from "@/images/logos"; 
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"; 
+  TCRLogo,
+} from "@/images/logos";
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 import Timeline from "@/app/components/Timeline/Timeline";
 import { title } from "process";
 
@@ -18,9 +20,7 @@ export const RESUME_DATA = {
   about: "Cybersecurity student and full-stack web developer with goals to secure a job in the field.",
   summary: (
     <>
-      A Cybersecurity student passionate about building secure systems and full-stack applications.
-      Experienced in backend development, and currently learning frontend technologies like Flutter and React and Next.js to create modern, responsive web applications.
-      Possess a strong foundation in cybersecurity principles, including Linux system administration, as well as offensive (attack) and defensive (protective) security techniques.
+      A Cybersecurity graduate with First Class Honours, passionate about building secure systems and full-stack applications. Experienced in backend development and skilled with frontend technologies such as Flutter, React, and Next.js for creating modern, responsive web applications. I have a solid foundation in cybersecurity principles, including Linux system administration, along with both offensive (ethical hacking, penetration testing) and defensive (system hardening, incident response) techniques.
     </>
   ),
   avatarUrl: "https://gitlab.com/uploads/-/system/user/avatar/22931844/avatar.png?width=192",
@@ -36,21 +36,43 @@ export const RESUME_DATA = {
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/osaid-qattan-17550a255/",
+        url: "https://www.linkedin.com/in/osaid-qattan/",
         icon: LinkedInIcon,
       },
     ],
   },
 
+  certification: [
+    {
+      title: "Certificate in Cybersecurity (CC)",
+      badges: ["Certification", "Cybersecurity"],
+      issuer: "ISC2",
+      date: "2024 - 2027",
+      description: "Certification in Cybersecurity (CC) from ISC2, demonstrating foundational knowledge in cybersecurity principles and practices.",
+      link: "https://www.credly.com/badges/cc-example-link",
+    },
+  ],
+
   work: [
+    {
+      company: "Ibtikar",
+      link: "",
+      badges: ["Remote", "Java Spring Boot", "Flutter", "React", "SQL", "Agile", "Jira"],
+      title: "Software Developer",
+      logo: IbtikarLogo,
+      start: "2024 Feb",
+      end: "now",
+      description:
+        "Developed scalable applications with a backend in Java Spring Boot and frontends in Flutter and React, collaborating in Agile sprints with code reviews. Contributed to a cross-platform Classifieds App with secure authentication, listings, and user management features.",
+    },
     {
       company: "TCR",
       link: "https://www.tcr-group.com/",
       badges: ["Remote", "React", "JavaScript", "Node.js", "SQL"],
       title: "Full Stack Developer Intern",
-      logo: ClevertechLogo,
-      start: "2023",
-      end: "2026",
+      logo: TCRLogo,
+      start: "2023 June",
+      end: "2023 July",
       description: (
         <>
           Full Stack Developer Intern at TCR, contributing to web applications and backend services.
@@ -60,17 +82,6 @@ export const RESUME_DATA = {
           </ul>
         </>
       ),
-    },
-    {
-      company: "ISC2",
-      link: "https://www.isc2.org/",
-      badges: ["Certification", "Cybersecurity"],
-      title: "Certification in Cybersecurity (CC)",
-      logo: NSNLogo,
-      start: "2024",
-      end: "2027",
-      description:
-        "Currently pursuing a Certification in Cybersecurity (CC) from ISC2 to enhance cybersecurity knowledge and skills.",
     },
   ],
   skills: [
@@ -103,7 +114,7 @@ export const RESUME_DATA = {
       logo: MonitoLogo,
       link: {
         label: "Project Details",
-        href: "https://github.com/Osaid03", 
+        href: "https://github.com/Osaid03",
       },
     },
     {
@@ -114,7 +125,18 @@ export const RESUME_DATA = {
       logo: ConsultlyLogo,
       link: {
         label: "WagenHub Repository",
-        href: "https://github.com/Osaid03", 
+        href: "https://github.com/Osaid03",
+      },
+    },
+    {
+      title: "Classifieds Mobile & Web Application",
+      techStack: ["Flutter", "Spring Boot", "Security", "Authentication"],
+      description:
+        "Cross-platform classifieds app with cybersecurity focus. Implemented secure authentication, data encryption, and conducted security assessments to mitigate vulnerabilities.",
+      logo: MonitoLogo,
+      link: {
+        label: "Project Repository",
+        href: "https://github.com/Osaid03",
       },
     },
     {
@@ -125,20 +147,20 @@ export const RESUME_DATA = {
       logo: ParabolLogo,
       link: {
         label: "BOTBase Repository",
-        href: "https://github.com/Osaid03", 
+        href: "https://github.com/Osaid03",
       },
     },
   ],
   slider: [
     {
-      id: "certificate1",       
-      imageUrl: "images/certificate1.png",  
-      redirectUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7228788689617747968/", 
+      id: "certificate1",
+      imageUrl: "images/certificate1.png",
+      redirectUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7228788689617747968/",
       title: "Certificate in CyberSeucrity"
     },
     {
-      id: "certificate2",       
-      imageUrl: "images/certificate2.png",  
+      id: "certificate2",
+      imageUrl: "images/certificate2.png",
       redirectUrl: "https://certificate.givemycertificate.com/c/683243ad-2685-4f9a-b8cb-bd9a7b13b5b5",
       title: "Certificate in Full Stack Web Development"
     },

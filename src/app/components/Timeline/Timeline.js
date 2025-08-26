@@ -5,7 +5,7 @@ import styles from "./Timeline.module.css"; // Import CSS Module
 
 const timelineData = [
   {
-    year: "2022 - Current",
+    year: "2022 - 2025",
     title: "University of West London",
     description: "Cyber Security BSc (Hons)",
     accentColor: "#41516C",
