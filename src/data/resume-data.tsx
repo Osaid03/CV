@@ -64,8 +64,15 @@ export const RESUME_DATA = {
       logo: IbtikarLogo,
       start: "2024 Feb",
       end: "now",
-      description:
-        "Developed scalable applications with a backend in Java Spring Boot and frontends in Flutter and React, collaborating in Agile sprints with code reviews. Contributed to a cross-platform Classifieds App with secure authentication, listings, and user management features.",
+      description: (
+        <>
+          Developed scalable applications with a backend in Java Spring Boot and frontends in Flutter and React, collaborating in Agile sprints with code reviews.
+          <ul className="list-inside list-disc">
+            <li>Contributed to a cross-platform Classifieds App with secure authentication, listings, and user management features.</li>
+            <li>Applied cybersecurity principles to ensure secure coding practices and data protection.</li>
+          </ul>
+        </>
+      ),
     },
     {
       company: "TCR",
