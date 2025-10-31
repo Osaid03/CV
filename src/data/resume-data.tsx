@@ -57,13 +57,36 @@ export const RESUME_DATA = {
 
   work: [
     {
-      company: "Ibtikar",
+      company: "Codeguru - Dubai",
+      location: "Dubai - Remote",
+      link: "https://codeguru.ae/",
+      badges: ["React", "Next.js", "Python", "FastAPI", "MangoDB", "CRM"],
+      title: "Software Developer",
+      logo: IbtikarLogo,
+      start: "Sep 2025",
+      end: "Present",
+description: (
+  <>
+    Developed scalable web and chatbot applications with modern frameworks including React, Next.js, Python (FastAPI), and Node.js, deploying microservices on AWS and integrating secure data handling with MongoDB.
+    <ul className="list-inside list-disc">
+      <li>Built and deployed a WhatsApp-based chatbot system using FastAPI and MongoDB with real-time interaction and automation features.</li>
+      <li>Integrated the chatbot with React and Node.js backend microservices, improving scalability and response efficiency.</li>
+      <li>Implemented AWS-based cloud deployment, API Gateway routing, and secure authentication to ensure system reliability and data protection.</li>
+      <li>Collaborated in Agile sprints with code reviews to enhance performance, maintainability, and cybersecurity compliance.</li>
+    </ul>
+  </>
+),
+
+    },
+    {
+      company: "Ibtikar - Germany",
+      location: "Germany - Remote",
       link: "",
       badges: ["Remote", "Java Spring Boot", "Flutter", "React", "SQL", "Agile", "Jira"],
       title: "Software Developer",
       logo: IbtikarLogo,
-      start: "2024 Feb",
-      end: "now",
+      start: "Feb 2024",
+      end: "Present",
       description: (
         <>
           Developed scalable applications with a backend in Java Spring Boot and frontends in Flutter and React, collaborating in Agile sprints with code reviews.
@@ -76,12 +99,13 @@ export const RESUME_DATA = {
     },
     {
       company: "TCR",
+      location: "Dubai - Remote",
       link: "https://www.tcr-group.com/",
       badges: ["Remote", "React", "JavaScript", "Node.js", "SQL"],
       title: "Full Stack Developer Intern",
       logo: TCRLogo,
-      start: "2023 June",
-      end: "2023 July",
+      start: "June 2023",
+      end: "July 2023",
       description: (
         <>
           Full Stack Developer Intern at TCR, contributing to web applications and backend services.
