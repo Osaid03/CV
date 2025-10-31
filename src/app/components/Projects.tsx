@@ -1,6 +1,6 @@
 "use client"; // Mark this component as a Client Component
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge } from "../../components/ui/badge";
 import {
   Card,
@@ -64,13 +64,13 @@ function ProjectTags({ tags }: ProjectTagsProps) {
 
   return (
     <ul
-      className="mt-2 flex list-none flex-wrap gap-1 p-0"
+      className="mt-3 flex list-none flex-wrap gap-2 p-0"
       aria-label="Technologies used"
     >
       {tags.map((tag) => (
         <li key={tag}>
           <Badge
-            className="px-1 py-0 text-[10px] print:px-1 print:py-0.5 print:text-[8px] print:leading-tight"
+            className="px-2 py-1 text-base font-medium print:px-1 print:py-0.5 print:text-[8px] print:leading-tight"
             variant="secondary"
           >
             {tag}
@@ -94,16 +94,16 @@ interface ProjectCardProps {
 function ProjectCard({ title, description, tags, link }: ProjectCardProps) {
   return (
     <Card
-      className="flex h-full flex-col overflow-hidden border p-3"
+      className="flex h-full flex-col overflow-hidden border p-4 shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all duration-300"
       role="article"
     >
-      <CardHeader>
-        <div className="space-y-1">
-          <CardTitle className="text-base">
+      <CardHeader className="pb-3">
+        <div className="space-y-2">
+          <CardTitle className="text-2xl font-semibold">
             <ProjectLink title={title} link={link} />
           </CardTitle>
           <CardDescription
-            className="text-pretty font-mono text-xs print:text-[10px]"
+            className="text-pretty font-mono text-lg leading-relaxed print:text-[10px]"
             aria-label="Project description"
           >
             {description}
@@ -122,31 +122,52 @@ interface ProjectsProps {
 }
 
 /**
- * Section component displaying all side projects in a slider format with 3 visible at once
+ * Section component displaying all side projects in a slider format with 2 visible at once
  */
 export function Projects({ projects }: ProjectsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const projectsPerView = 3;
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
+  const [isPaused, setIsPaused] = useState(false);
+  const projectsPerView = 2;
   const maxIndex = Math.max(0, projects.length - projectsPerView);
+  const autoSlideInterval = 5000; // 5 seconds - comfortable reading time
 
-  const handleTransition = (newIndex: number) => {
+  const handleTransition = (newIndex: number, direction: 'left' | 'right') => {
+    setSlideDirection(direction);
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex(newIndex);
-      setIsTransitioning(false);
-    }, 150);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 150);
+    }, 350);
   };
 
   const nextProject = () => {
-    const newIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-    handleTransition(newIndex);
+    const newIndex = currentIndex >= maxIndex ? 0 : currentIndex + projectsPerView;
+    handleTransition(newIndex, 'right');
   };
 
   const prevProject = () => {
-    const newIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-    handleTransition(newIndex);
+    const newIndex = currentIndex <= 0 ? maxIndex : currentIndex - projectsPerView;
+    handleTransition(newIndex, 'left');
   };
+
+  // Auto-slide functionality
+  useEffect(() => {
+    if (!isPaused && projects.length > projectsPerView) {
+      const interval = setInterval(() => {
+        nextProject();
+      }, autoSlideInterval);
+
+      return () => clearInterval(interval);
+    }
+  }, [currentIndex, isPaused, projects.length, projectsPerView]);
+
+  // Pause on hover
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
 
   const visibleProjects = projects.slice(currentIndex, currentIndex + projectsPerView);
 
@@ -158,39 +179,53 @@ export function Projects({ projects }: ProjectsProps) {
   }
 
   return (
-    <Section className="print-force-new-page scroll-mb-16 print:space-y-4 print:pt-12">
-      <h2 className="text-xl font-bold" id="side-projects">
-        Side projects
+    <Section className="print-force-new-page scroll-mb-16 print:space-y-4 print:pt-12 mb-16">
+      <h2 className="text-4xl font-bold mb-8" id="side-projects">
+        Side Projects
       </h2>
 
-      {/* Slider Container */}
-      <div className="relative">
-        {/* Previous Button */}
+      {/* Simple Projects Container */}
+      <div 
+        className="relative"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Floating Navigation Buttons */}
         <button
           onClick={prevProject}
           disabled={isTransitioning}
-          className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-gray-200 text-gray-800 shadow-md hover:bg-gray-300 hover:scale-110 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-xl hover:shadow-2xl hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
           aria-label="Previous projects"
         >
-          &lt;
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
         </button>
 
-        {/* Projects Grid */}
-        <div className="mx-12 overflow-hidden">
+        <button
+          onClick={nextProject}
+          disabled={isTransitioning}
+          className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-xl hover:shadow-2xl hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+          aria-label="Next projects"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Projects Showcase Grid */}
+        <div className="mx-24 overflow-visible">
           <div
-            className={`-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 transform translate-x-4' : 'opacity-100 transform translate-x-0'
-              }`}
+            className={`grid grid-cols-1 gap-8 print:grid-cols-3 print:gap-4 md:grid-cols-2 lg:grid-cols-2 transition-opacity duration-700 ease-out ${
+              isTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
             role="feed"
             aria-labelledby="side-projects"
           >
             {visibleProjects.map((project, index) => (
               <article
                 key={`${project.title}-${currentIndex}-${index}`}
-                className={`h-full transition-all duration-300 ease-in-out ${isTransitioning
-                    ? 'opacity-0 transform scale-95'
-                    : 'opacity-100 transform scale-100'
-                  }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className="h-full overflow-visible"
               >
                 <ProjectCard
                   title={project.title}
@@ -203,36 +238,31 @@ export function Projects({ projects }: ProjectsProps) {
           </div>
         </div>
 
-        {/* Next Button */}
-        <button
-          onClick={nextProject}
-          disabled={isTransitioning}
-          className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-gray-200 text-gray-800 shadow-md hover:bg-gray-300 hover:scale-110 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-          aria-label="Next projects"
-        >
-          &gt;
-        </button>
-      </div>
-
-      {/* Dots Indicator */}
-      <div className="flex justify-center space-x-2 mt-4">
-        {Array.from({ length: projects.length }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              const newIndex = Math.min(index, maxIndex);
-              if (newIndex !== currentIndex) {
-                handleTransition(newIndex);
-              }
-            }}
-            disabled={isTransitioning}
-            className={`h-2 w-2 rounded-full transition-all duration-300 ease-in-out hover:scale-125 disabled:cursor-not-allowed ${index >= currentIndex && index < currentIndex + projectsPerView
-                ? 'bg-gray-800 scale-110'
-                : 'bg-gray-300'
-              }`}
-            aria-label={`Go to project ${index + 1}`}
-          />
-        ))}
+        {/* Slider Dots Navigation */}
+        <div className="flex justify-center mt-8">
+          <div className="flex items-center space-x-3">
+            {Array.from({ length: Math.ceil(projects.length / projectsPerView) }).map((_, slideIndex) => (
+              <button
+                key={slideIndex}
+                onClick={() => {
+                  const newIndex = slideIndex * projectsPerView;
+                  if (newIndex !== currentIndex && newIndex <= maxIndex) {
+                    const direction = newIndex > currentIndex ? 'right' : 'left';
+                    handleTransition(newIndex, direction);
+                  }
+                }}
+                disabled={isTransitioning}
+                className={`transition-all duration-300 ease-in-out hover:scale-110 ${
+                  Math.floor(currentIndex / projectsPerView) === slideIndex
+                    ? 'w-8 h-3 bg-black rounded-full shadow-md'
+                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+                aria-label={`Go to slide ${slideIndex + 1}`}
+              >
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </Section>
   );

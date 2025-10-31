@@ -44,20 +44,20 @@ interface SkillsProps {
 export function Skills({ skills, className }: SkillsProps) {
   return (
     <Section>
-      <h2 className="text-xl font-bold">Skills</h2>
-      <div className="flex flex-wrap gap-4">
+      <h2 className="text-4xl font-bold mb-8">Skills</h2>
+      <div className="flex flex-wrap gap-6 justify-center">
         {RESUME_DATA.skills.map((skill) => {
           return (
             <div
               key={skill.name}
-              className="relative group flex items-center justify-center w-16 h-16"
+              className="relative group flex items-center justify-center w-20 h-20"
             >
               <img
                 src={skill.logo}
                 alt={skill.name}
-                className="w-12 h-12 transition-transform group-hover:scale-125"
+                className="w-16 h-16 transition-transform group-hover:scale-125"
               />
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full text-xs font-medium bg-gray-800 text-white px-1 py-0.5 rounded opacity-0 group-hover:translate-y-2 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap">
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full text-base font-medium bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:translate-y-2 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap">
                 {skill.name}
               </span>
             </div>

@@ -1,3 +1,18 @@
+body {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 28px,
+    rgba(0,0,0,0.04) 28px 32px,
+    transparent 32px 60px
+  ),
+  repeating-linear-gradient(
+    -45deg,
+    transparent 0 60px,
+    rgba(0,0,0,0.04) 60px 64px,
+    transparent 64px 120px
+  );
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -77,9 +92,20 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 }
 
 .print-force-new-page {
   page-break-before: always;
+}
+
+/* Custom scrollbar utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

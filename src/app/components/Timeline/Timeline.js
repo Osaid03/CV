@@ -36,8 +36,8 @@ const Timeline = () => {
   // IntersectionObserver to add 'visible' class
   useEffect(() => {
     const observerOptions = {
-      rootMargin: "0px",
-      threshold: 0.5, // Trigger when 50% of the card is visible
+      rootMargin: "50px",
+      threshold: 0.1, // Trigger when 10% of the card is visible
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -48,24 +48,36 @@ const Timeline = () => {
       });
     }, observerOptions);
 
-    timelineItemsRef.current.forEach((item) => observer.observe(item));
+    // Add a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      const currentItems = timelineItemsRef.current.filter(item => item !== null);
+      currentItems.forEach((item) => {
+        if (item) {
+          observer.observe(item);
+        }
+      });
+    }, 100);
 
     return () => {
-      // Clean up observer on component unmount
+      clearTimeout(timeoutId);
       observer.disconnect();
     };
   }, []);
 
   return (
     <div className={styles.timelineContainer}>
-      <h1 className={styles.heading}>Education</h1>
+      <h2 className="text-4xl font-bold text-center mb-16">Education</h2>
       <ul className={styles.timelineList}>
         {timelineData.map((item, index) => (
           <li
             key={index}
             className={`${styles.timelineItem} ${index % 2 === 0 ? styles.left : styles.right}`}
             style={{ "--accent-color": item.accentColor }}
-            ref={(el) => (timelineItemsRef.current[index] = el)} // Add each card to the reference
+            ref={(el) => {
+              if (el) {
+                timelineItemsRef.current[index] = el;
+              }
+            }}
           >
             <div className={styles.circle}></div>
             <div className={styles.content}>

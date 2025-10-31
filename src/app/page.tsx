@@ -2,7 +2,6 @@ import { CommandMenu } from "@/components/command-menu";
 import { Metadata } from "next";
 import { RESUME_DATA } from "@/data/resume-data";
 import { WorkExperience } from "./components/WorkExperience";
-import Certification from "./components/Certification";
 import { Projects } from "./components/Projects";
 import { Summary } from "./components/Summary";
 import { Skills } from "./components/Skills";
@@ -11,6 +10,13 @@ import Slider from "./components/Slider/Slider";
 import Timeline from "./components/Timeline/Timeline";
 import DarkModeToggle from './components/DarkMode/DarkModeToggle';
 
+function SectionDivider() {
+  return (
+    <div className="w-full flex justify-center my-8 print:my-4">
+      <div className="w-full h-px bg-[#dde1e4]"></div>
+    </div>
+  );
+}
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} - Resume`,
@@ -59,37 +65,31 @@ function getCommandMenuLinks() {
 export default function ResumePage() {
   return (
     <main
-      className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-11 md:p-16"
+      className="relative mx-auto scroll-my-12 overflow-x-hidden p-4 sm:p-6 print:p-11 md:p-20 mt-16"
       id="main-content"
     >
       <div className="sr-only">
         <h1>{RESUME_DATA.name}&apos;s Resume</h1>
       </div>
-
       <section
-        className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-4"
+        className="mx-auto w-full max-w-6xl space-y-10 bg-white print:space-y-4 px-4 sm:px-6 md:px-8"
         aria-label="Resume Content"
       >
         <Header />
-
-        <div className="space-y-8 print:space-y-4">
+        <div className="space-y-12 print:space-y-4">
           <Summary summary={RESUME_DATA.summary} />
-
-          <Certification />
-
+          <SectionDivider />
           <WorkExperience work={RESUME_DATA.work} />
-
+          <SectionDivider />
           <Timeline />
-
+          <SectionDivider />
           <Skills skills={RESUME_DATA.skills} />
-
+          <SectionDivider />
           <Projects projects={RESUME_DATA.projects} />
-
+          <SectionDivider />
           <Slider sliders={RESUME_DATA.slider} />
-
         </div>
       </section>
-
       <nav className="print:hidden" aria-label="Quick navigation">
         <CommandMenu links={getCommandMenuLinks()} />
       </nav>

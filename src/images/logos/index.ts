@@ -18,6 +18,7 @@ import Minimal from "./minimal.svg";
 import IbtikarLogo from "./IbtikarLogo.png";
 import TCRLogo from "./TCR.png";
 import ISC2Logo from "./ISC2.png";
+import CodeguruLogo from "./codeguru_logo.jpg";
 
 
 export {
@@ -41,4 +42,5 @@ export {
   IbtikarLogo,
   TCRLogo,
   ISC2Logo,
+  CodeguruLogo,
 };

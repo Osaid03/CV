@@ -1,26 +1,19 @@
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { RESUME_DATA } from "@/data/resume-data";
 
 interface LocationLinkProps {
   location: typeof RESUME_DATA.location;
-  locationLink: typeof RESUME_DATA.locationLink;
 }
 
-function LocationLink({ location, locationLink }: LocationLinkProps) {
+function LocationLink({ location }: LocationLinkProps) {
   return (
-    <p className="max-w-md items-center text-pretty font-mono text-xs text-foreground">
-      <a
-        className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
-        href={locationLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Location: ${location}`}
-      >
-        <GlobeIcon className="size-3" aria-hidden="true" />
+    <p className="max-w-md items-center text-pretty font-mono text-xl text-foreground">
+      <span className="inline-flex gap-x-2 align-baseline leading-none">
+        <MapPinIcon className="size-4" aria-hidden="true" />
         {location}
-      </a>
+      </span>
     </p>
   );
 }
@@ -33,16 +26,15 @@ interface SocialButtonProps {
 
 function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
   return (
-    <Button className="size-8" variant="outline" size="icon" asChild>
-      <a
-        href={href}
-        aria-label={label}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon className="size-4" aria-hidden="true" />
-      </a>
-    </Button>
+    <a
+      href={href}
+      aria-label={label}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-foreground/60 transition-colors"
+    >
+      <Icon className="size-8" aria-hidden="true" />
+    </a>
   );
 }
 
@@ -53,40 +45,46 @@ interface ContactButtonsProps {
 
 function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
   return (
-    <div
-      className="flex gap-x-1 pt-1 font-mono text-sm text-foreground/80 print:hidden"
-      role="list"
-      aria-label="Contact links"
-    >
-      {personalWebsiteUrl && (
-        <SocialButton
-          href={personalWebsiteUrl}
-          icon={GlobeIcon}
-          label="Personal website"
-        />
-      )}
+    <div className="space-y-1 print:hidden">
+      {/* Email with icon */}
       {contact.email && (
-        <SocialButton
-          href={`mailto:${contact.email}`}
-          icon={MailIcon}
-          label="Email"
-        />
+        <div className="flex items-center gap-x-2 font-mono text-xl text-foreground/80">
+          <MailIcon className="size-4" aria-hidden="true" />
+          <a
+            href={`mailto:${contact.email}`}
+            className="hover:underline"
+            aria-label="Email"
+          >
+            {contact.email}
+          </a>
+        </div>
       )}
+      
+      {/* Phone with icon */}
       {contact.tel && (
-        <SocialButton
-          href={`tel:${contact.tel}`}
-          icon={PhoneIcon}
-          label="Phone"
-        />
+        <div className="flex items-center gap-x-2 font-mono text-xl text-foreground/80">
+          <PhoneIcon className="size-4" aria-hidden="true" />
+          <a
+            href={`tel:${contact.tel}`}
+            className="hover:underline"
+            aria-label="Phone"
+          >
+            {contact.tel}
+          </a>
+        </div>
       )}
-      {contact.social.map((social) => (
-        <SocialButton
-          key={social.name}
-          href={social.url}
-          icon={social.icon}
-          label={social.name}
-        />
-      ))}
+      
+      {/* Social buttons */}
+      <div className="flex gap-x-6 pt-3" role="list" aria-label="Social links">
+        {contact.social.map((social) => (
+          <SocialButton
+            key={social.name}
+            href={social.url}
+            icon={social.icon}
+            label={social.name}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -141,27 +139,29 @@ function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
  */
 export function Header() {
   return (
-    <header className="flex items-center justify-between">
-      <div className="flex-1 space-y-1.5">
-        <h1 className="text-2xl font-bold" id="resume-name">
+    <header className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex-1 space-y-2">
+        <h1 className="text-5xl md:text-6xl font-bold" id="resume-name">
           {RESUME_DATA.name}
         </h1>
-        <p
-          className="max-w-md text-pretty font-mono text-sm text-foreground/80 print:text-[12px]"
+        <div
+          className="max-w-4xl text-pretty font-mono text-xl text-foreground/80 print:text-[12px]"
           aria-labelledby="resume-name"
         >
-          {RESUME_DATA.about}
-        </p>
+          <p className="font-bold mb-4 text-2xl">First Class Cybersecurity Graduate & Full-Stack Developer</p>
+          <p className="mb-4">Ethical Hacking • Pentesting • AppSec • Secure Flutter & Spring Boot</p>
+        </div>
 
-        <LocationLink
-          location={RESUME_DATA.location}
-          locationLink={RESUME_DATA.locationLink}
-        />
+        <div className="space-y-1">
+          <LocationLink
+            location={RESUME_DATA.location}
+          />
 
-        <ContactButtons
-          contact={RESUME_DATA.contact}
-          personalWebsiteUrl={RESUME_DATA.personalWebsiteUrl}
-        />
+          <ContactButtons
+            contact={RESUME_DATA.contact}
+            personalWebsiteUrl={RESUME_DATA.personalWebsiteUrl}
+          />
+        </div>
 
         <PrintContact
           contact={RESUME_DATA.contact}
@@ -169,7 +169,7 @@ export function Header() {
         />
       </div>
 
-      <Avatar className="size-28" aria-hidden="true">
+      <Avatar className="size-40 self-center sm:size-48" aria-hidden="true">
         <AvatarImage
           alt={`${RESUME_DATA.name}'s profile picture`}
           src={RESUME_DATA.avatarUrl}
