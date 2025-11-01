@@ -54,8 +54,8 @@ export const RESUME_DATA = {
   end: "Present",
   description: (
     <>
-      Developed scalable web and chatbot applications using Python (FastAPI) as the main microservice framework, deployed on AWS with MongoDB for data management and OpenSearch for intelligent query retrieval.
       <ul className="list-inside list-disc">
+        <li>Developed scalable web and chatbot applications using Python (FastAPI) as the main microservice framework, deployed on AWS with MongoDB for data management and OpenSearch for intelligent query retrieval.</li>
         <li>Built and deployed a WhatsApp-based chatbot using FastAPI as a microservice integrated with a CRM backend developed with React and Node.js.</li>
         <li>Implemented a knowledge bank powered by OpenSearch RAG and FAQ-based retrieval to enhance accuracy and contextual understanding in chatbot responses.</li>
         <li>Deployed services on AWS using API Gateway routing, Lambda functions, and secure authentication for reliable cloud performance.</li>
@@ -77,8 +77,8 @@ export const RESUME_DATA = {
   end: "Present",
   description: (
     <>
-      Developed scalable applications with a backend in Java Spring Boot and frontends in Flutter and React, collaborating in Agile sprints with regular code reviews and best practices in version control.
       <ul className="list-inside list-disc">
+        <li>Developed scalable applications with a backend in Java Spring Boot and frontends in Flutter and React, collaborating in Agile sprints with regular code reviews and best practices in version control.</li>
         <li>Contributed to a cross-platform Classifieds App with secure authentication, listings, and user management features.</li>
         <li>Applied cybersecurity principles to ensure secure coding practices, data protection, and compliance with security standards.</li>
         <li>Collaborated with cross-functional teams to optimize performance, implement CI/CD pipelines, and streamline deployment workflows.</li>
@@ -99,10 +99,11 @@ export const RESUME_DATA = {
       end: "July 2023",
       description: (
         <>
-          Full Stack Developer Intern at TCR, contributing to web applications and backend services.
           <ul className="list-inside list-disc">
-            <li>Worked on building and maintaining scalable web applications using React and Node.js.</li>
-            <li>Collaborated with team members to improve code quality and development workflows.</li>
+            <li>Developed and maintained scalable web applications using React for frontend and Node.js for backend services.</li>
+            <li>Collaborated with cross-functional teams to enhance code quality through peer reviews and adherence to best practices.</li>
+            <li>Participated in Agile development workflows, contributing to sprint planning and daily stand-ups.</li>
+            <li>Implemented RESTful APIs and integrated SQL databases for efficient data management and retrieval.</li>
           </ul>
         </>
       ),
