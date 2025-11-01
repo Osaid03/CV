@@ -138,3 +138,61 @@
     border-width: 10px 20px 10px 0;
     border-color: transparent #fff transparent transparent;
 }
+
+/* Mobile Responsive Styles for Timeline */
+@media (max-width: 640px) {
+  .timelineItem {
+    width: 42% !important;
+    padding: 10px !important;
+  }
+  
+  .timelineItem.left {
+    left: 4% !important;
+    transform: translateY(20px) !important;
+  }
+  
+  .timelineItem.right {
+    left: 54% !important;
+    transform: translateY(20px) !important;
+  }
+  
+  .timelineItem.visible {
+    transform: translateY(0) !important;
+  }
+  
+  .circle {
+    width: 14px !important;
+    height: 14px !important;
+    border-width: 3px !important;
+  }
+  
+  .timelineItem.left .circle {
+    right: -22px !important;
+  }
+  
+  .timelineItem.right .circle {
+    left: -22px !important;
+  }
+  
+  .content {
+    padding: 10px !important;
+  }
+  
+  .date {
+    font-size: 11px !important;
+    padding: 3px 6px !important;
+  }
+  
+  .title {
+    font-size: 14px !important;
+    margin-bottom: 3px !important;
+  }
+  
+  .descr {
+    font-size: 12px !important;
+  }
+  
+  .timelineList::after {
+    width: 2px !important;
+  }
+}

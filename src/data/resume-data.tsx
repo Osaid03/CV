@@ -18,11 +18,10 @@ export const RESUME_DATA = {
   name: "OSAID QATTAN",
   initials: "OQ",
   location: "Abu Dhabi, UAE",
-  about: "First Class Cybersecurity Graduate & Full-Stack Developer  Ethical Hacking • Pentesting • AppSec • Secure Flutter & Spring Boot",
+  about: "Ethical Hacking • Pentesting • AppSec • Secure Flutter & Spring Boot",
   summary: (
     <>
-      A Cybersecurity graduate with First Class Honours, passionate about building secure systems and full-stack applications. Experienced in backend development and skilled with frontend technologies such as Flutter, React, and Next.js for creating modern, responsive web applications. I have a solid foundation in cybersecurity principles, including Linux system administration, along with both offensive (ethical hacking, penetration testing) and defensive (system hardening, incident response) techniques.
-    </>
+     First Class Cybersecurity graduate possessing a specialization in secure full-stack development. Experienced in building scalable applications with Python FastAPI and Java Spring Boot, along with knowledge in Flutter, React, and Next.js. Highly proficient in both offensive security (ethical hacking, penetration testing) and defensive security (system hardening, incident response), as well as very competent with Linux system administration.    </>
   ),
   avatarUrl: "https://gitlab.com/uploads/-/system/user/avatar/22931844/avatar.png?width=192",
   personalWebsiteUrl: "https://github.com/Osaid03",
@@ -72,7 +71,7 @@ export const RESUME_DATA = {
   location: "Germany - Remote",
   link: "https://www.ibtikar.sa/",
   badges: ["Java Spring Boot", "Flutter", "React", "SQL", "Agile", "Jira"],
-  title: "Software Developer",
+  title: "Full Stack Software Developer",
   logo: IbtikarLogo,
   start: "Feb 2024",
   end: "Present",
@@ -157,7 +156,7 @@ export const RESUME_DATA = {
   projects: [
     {
       title: "Adaptive Intelligence for Honeypot Deception",
-      techStack: ["Python", "TensorFlow", "Cowrie Honeypot"],
+      techStack: ["Python", "TensorFlow", "Cowrie Honeypot","Machine Learning"],
       description:
         "Graduation project focused on integrating AI-driven behavioral analysis and real-time adaptability to improve the effectiveness of honeypots in cybersecurity.",
       logo: MonitoLogo,
@@ -175,11 +174,12 @@ export const RESUME_DATA = {
       link: {
         label: "WagenHub Repository",
         href: "https://github.com/Osaid03",
+
       },
     },
     {
       title: "Classifieds Mobile & Web Application",
-      techStack: ["Flutter", "Spring Boot", "Security", "Authentication"],
+      techStack: ["Flutter (Dart)", "Java Spring Boot", "RESTful API" ,"Git" ,"Security", "Authentication"],
       description:
         "Cross-platform classifieds app with cybersecurity focus. Implemented secure authentication, data encryption, and conducted security assessments to mitigate vulnerabilities.",
       logo: MonitoLogo,
@@ -188,24 +188,36 @@ export const RESUME_DATA = {
         href: "https://github.com/Osaid03",
       },
     },
-    {
-      title: "BOTBase",
-      techStack: ["Java", "Firebase", "Discord API"],
-      description:
-        "A custom-built Discord bot with a ranking system powered by Firebase, improving community engagement.",
-      logo: ParabolLogo,
-      link: {
-        label: "BOTBase Repository",
-        href: "https://github.com/Osaid03",
-      },
-    },
+{
+  title: "BOTBase – Valorant Discord Bot",
+  techStack: ["Java", "Firebase", "Discord API", "Game Integration"],
+  description:
+    "Developed a custom Discord bot for the Valorant gaming community using Java and the Discord API. Integrated Firebase for player data storage, ranking, and performance tracking, enhancing community engagement through automated stats, leaderboards, and activity rewards.",
+  logo: ParabolLogo,
+  link: {
+    label: "BOTBase Repository",
+    href: "https://github.com/Osaid03",
+  },
+},
+{
+  title: "Chatbot Clinic",
+  techStack: ["Python", "FastAPI", "React", "Next.js", "MongoDB", "AWS", "OpenSearch RAG"],
+  description:
+    "Developed an intelligent clinic chatbot system using Python (FastAPI) as a microservice integrated with a React and Next.js frontend. Implemented OpenSearch RAG for contextual knowledge retrieval, enabling accurate patient query handling and FAQ automation. Deployed on AWS with MongoDB for data management, API Gateway routing, and Lambda-based scalability to ensure secure and reliable cloud performance.",
+  logo: ParabolLogo,
+  link: {
+    label: "Chatbot Clinic Repository",
+    href: "https://github.com/Osaid03",
+  },
+},
+
   ],
   slider: [
     {
       id: "certificate1",
       imageUrl: "images/certificate1.png",
       redirectUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7228788689617747968/",
-      title: "Certificate in CyberSeucrity"
+      title: "Certificate in CyberSecurity"
     },
     {
       id: "certificate2",

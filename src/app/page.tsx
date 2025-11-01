@@ -56,18 +56,18 @@ function getCommandMenuLinks() {
 export default function ResumePage() {
   return (
     <main
-      className="relative mx-auto scroll-my-12 overflow-x-hidden p-4 sm:p-6 print:p-11 md:p-20 mt-16"
+      className="relative mx-auto scroll-my-12 overflow-x-hidden p-2 sm:p-6 print:p-11 md:p-20 mt-4 sm:mt-8 md:mt-16"
       id="main-content"
     >
       <div className="sr-only">
         <h1>{RESUME_DATA.name}&apos;s Resume</h1>
       </div>
       <section
-        className="mx-auto w-full max-w-6xl space-y-10 bg-white print:space-y-4 px-4 sm:px-6 md:px-8"
+        className="mx-auto w-full max-w-6xl space-y-6 sm:space-y-10 bg-white print:space-y-4 px-2 sm:px-6 md:px-8"
         aria-label="Resume Content"
       >
         <Header />
-        <div className="space-y-12 print:space-y-4">
+        <div className="space-y-6 sm:space-y-12 print:space-y-4">
           <Summary summary={RESUME_DATA.summary} />
           <SectionDivider />
           <WorkExperience work={RESUME_DATA.work} />

@@ -121,15 +121,27 @@ interface ProjectsProps {
   projects: (typeof RESUME_DATA)["projects"];
 }
 
-/**
- * Section component displaying all side projects in a slider format with 2 visible at once
- */
+
 export function Projects({ projects }: ProjectsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
   const [isPaused, setIsPaused] = useState(false);
-  const projectsPerView = 2;
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  const projectsPerView = isMobile ? 1 : 2;
   const maxIndex = Math.max(0, projects.length - projectsPerView);
   const autoSlideInterval = 5000; // 5 seconds - comfortable reading time
 
@@ -152,6 +164,33 @@ export function Projects({ projects }: ProjectsProps) {
   const prevProject = () => {
     const newIndex = currentIndex <= 0 ? maxIndex : currentIndex - projectsPerView;
     handleTransition(newIndex, 'left');
+  };
+
+  // Handle touch events for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextProject();
+    }
+    if (isRightSwipe) {
+      prevProject();
+    }
+    
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   // Auto-slide functionality
@@ -181,7 +220,7 @@ export function Projects({ projects }: ProjectsProps) {
   return (
     <Section className="print-force-new-page scroll-mb-16 print:space-y-4 print:pt-12 mb-16">
       <h2 className="text-4xl font-bold mb-8" id="side-projects">
-        Side Projects
+        Projects
       </h2>
 
       {/* Simple Projects Container */}
@@ -189,15 +228,18 @@ export function Projects({ projects }: ProjectsProps) {
         className="relative"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        {/* Floating Navigation Buttons */}
+        {/* Floating Navigation Buttons - Hidden on Mobile */}
         <button
           onClick={prevProject}
           disabled={isTransitioning}
-          className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-xl hover:shadow-2xl hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+          className="absolute left-2 sm:left-4 top-1/2 z-20 hidden sm:flex h-10 w-10 sm:h-12 sm:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-xl hover:shadow-2xl hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
           aria-label="Previous projects"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -205,18 +247,18 @@ export function Projects({ projects }: ProjectsProps) {
         <button
           onClick={nextProject}
           disabled={isTransitioning}
-          className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-xl hover:shadow-2xl hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+          className="absolute right-2 sm:right-4 top-1/2 z-20 hidden sm:flex h-10 w-10 sm:h-12 sm:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-xl hover:shadow-2xl hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
           aria-label="Next projects"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         {/* Projects Showcase Grid */}
-        <div className="mx-24 overflow-visible">
+        <div className="mx-4 sm:mx-12 md:mx-24 overflow-visible">
           <div
-            className={`grid grid-cols-1 gap-8 print:grid-cols-3 print:gap-4 md:grid-cols-2 lg:grid-cols-2 transition-opacity duration-700 ease-out ${
+            className={`grid grid-cols-1 gap-4 sm:gap-8 print:grid-cols-3 print:gap-4 md:grid-cols-2 lg:grid-cols-2 transition-opacity duration-700 ease-out ${
               isTransitioning ? 'opacity-0' : 'opacity-100'
             }`}
             role="feed"

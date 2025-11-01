@@ -2,6 +2,7 @@ import { MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { RESUME_DATA } from "@/data/resume-data";
+import { TypingAnimation } from "./TypingAnimation";
 
 interface LocationLinkProps {
   location: typeof RESUME_DATA.location;
@@ -9,9 +10,9 @@ interface LocationLinkProps {
 
 function LocationLink({ location }: LocationLinkProps) {
   return (
-    <p className="max-w-md items-center text-pretty font-mono text-xl text-foreground">
+    <p className="max-w-md items-center text-pretty font-mono text-base sm:text-xl text-foreground">
       <span className="inline-flex gap-x-2 align-baseline leading-none">
-        <MapPinIcon className="size-4" aria-hidden="true" />
+        <MapPinIcon className="size-3 sm:size-4" aria-hidden="true" />
         {location}
       </span>
     </p>
@@ -33,7 +34,7 @@ function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
       rel="noopener noreferrer"
       className="hover:text-foreground/60 transition-colors"
     >
-      <Icon className="size-8" aria-hidden="true" />
+      <Icon className="size-6 sm:size-8" aria-hidden="true" />
     </a>
   );
 }
@@ -48,8 +49,8 @@ function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
     <div className="space-y-1 print:hidden">
       {/* Email with icon */}
       {contact.email && (
-        <div className="flex items-center gap-x-2 font-mono text-xl text-foreground/80">
-          <MailIcon className="size-4" aria-hidden="true" />
+        <div className="flex items-center gap-x-2 font-mono text-base sm:text-xl text-foreground/80">
+          <MailIcon className="size-3 sm:size-4" aria-hidden="true" />
           <a
             href={`mailto:${contact.email}`}
             className="hover:underline"
@@ -62,8 +63,8 @@ function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
       
       {/* Phone with icon */}
       {contact.tel && (
-        <div className="flex items-center gap-x-2 font-mono text-xl text-foreground/80">
-          <PhoneIcon className="size-4" aria-hidden="true" />
+        <div className="flex items-center gap-x-2 font-mono text-base sm:text-xl text-foreground/80">
+          <PhoneIcon className="size-3 sm:size-4" aria-hidden="true" />
           <a
             href={`tel:${contact.tel}`}
             className="hover:underline"
@@ -75,7 +76,7 @@ function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
       )}
       
       {/* Social buttons */}
-      <div className="flex gap-x-6 pt-3" role="list" aria-label="Social links">
+      <div className="flex gap-x-4 sm:gap-x-6 pt-2 sm:pt-3" role="list" aria-label="Social links">
         {contact.social.map((social) => (
           <SocialButton
             key={social.name}
@@ -139,17 +140,24 @@ function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
  */
 export function Header() {
   return (
-    <header className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex-1 space-y-2">
-        <h1 className="text-5xl md:text-6xl font-bold" id="resume-name">
+    <header className="flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex-1 space-y-1.5 sm:space-y-2">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold" id="resume-name">
           {RESUME_DATA.name}
         </h1>
         <div
-          className="max-w-4xl text-pretty font-mono text-xl text-foreground/80 print:text-[12px]"
+          className="max-w-4xl text-pretty font-mono text-base sm:text-xl text-foreground/80 print:text-[12px]"
           aria-labelledby="resume-name"
         >
-          <p className="font-bold mb-4 text-2xl">First Class Cybersecurity Graduate & Full-Stack Developer</p>
-          <p className="mb-4">Ethical Hacking • Pentesting • AppSec • Secure Flutter & Spring Boot</p>
+          <p className="font-bold mb-2 sm:mb-4 text-lg sm:text-2xl">
+            <TypingAnimation 
+              phrases={["First Class CyberSecurity Graduate", "Full-Stack Developer"]}
+              typingSpeed={80}
+              deletingSpeed={40}
+              pauseDuration={1000}
+            />
+          </p>
+          <p className="mb-2 sm:mb-4 text-sm sm:text-base">Java SpringBoot • Python FastAPI & Flutter Dart • Ethical Hacking • Pentesting • AppSec</p>
         </div>
 
         <div className="space-y-1">
@@ -169,7 +177,7 @@ export function Header() {
         />
       </div>
 
-      <Avatar className="size-40 self-center sm:size-48" aria-hidden="true">
+      <Avatar className="size-28 sm:size-40 md:size-48 self-center" aria-hidden="true">
         <AvatarImage
           alt={`${RESUME_DATA.name}'s profile picture`}
           src={RESUME_DATA.avatarUrl}
